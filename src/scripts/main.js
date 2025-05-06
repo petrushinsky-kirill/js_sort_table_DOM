@@ -5,7 +5,16 @@ const tableHeadRow = document.querySelector('thead tr');
 const bodyArr = Array.from(tableBody.children);
 
 tableHeadRow.addEventListener('click', (e) => {
-  const target = e.target;
+  let target = e.target;
+
+  while (target && target.nodeName !== 'TH') {
+    target = target.parentElement;
+  }
+
+  if (!target) {
+    return;
+  }
+
   const headers = Array.from(tableHeadRow.children);
   const index = headers.indexOf(target);
 
